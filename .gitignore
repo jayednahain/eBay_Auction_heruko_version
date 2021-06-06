@@ -1,6 +1,6 @@
-/media/**
 
-!/media
+
+
 __pycache__
 */migrations/**
 !*/migrations
