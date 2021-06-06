@@ -1,0 +1,63 @@
+{% extends 'new_base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block body %}
+
+    {% if user.is_authenticated %}
+        <p> {{ user.username }}</p>
+        <p> {{ user.email }}</p>
+        <p> {{ user.date_joined }}</p>
+
+    {% endif %}
+    <br>
+
+    <h2 class="mb-4">My Items</h2>
+
+    {% for item in rang %}
+        {% if item.author == user %}
+
+
+
+        {% endif %}
+    {% endfor %}
+
+    <table class="table">
+          <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Current Price</th>
+                <th scope="col">Published Data</th>
+                <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+          {% for item in items %}
+            {% if item.author == user %}
+            <tr>
+                <th scope="row">{{ item.id }}</th>
+                <td><a href="{% url 'singe_product_view_link' item.pk %}">{{ item.product_name }}</a></td>
+                <td>{{ item.current_bid_price }}</td>
+                <td>{{ item.item_post_date }}</td>
+                <td>
+
+                    <a href="{% url 'delete_product_link' item.pk %}"><img src="{% static 'authentication_system/img/delete.png' %}"width="30px" height="30px"></a>
+
+                </td>
+            </tr>
+            {% endif %}
+          {% endfor %}
+          </tbody>
+        </table>
+
+
+
+
+
+
+
+{% endblock body %}

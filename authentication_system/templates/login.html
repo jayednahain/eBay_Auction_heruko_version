@@ -1,0 +1,46 @@
+{% extends 'new_base.html' %}
+{% load static %}
+
+{% block title %}
+
+{% endblock title %}
+
+
+
+
+
+{% block body %}
+
+
+
+
+
+
+    <div class="col-md-6 offset-md-3 border border-info rounded p-4">
+        <h1 class="text-center">log in user</h1>
+        <br>
+        <br>
+
+
+
+        <form method="POST">
+            {% csrf_token %}
+              <div class="form-group">
+                <input type="text" class="form-control" name="username"  aria-describedby="emailHelp" placeholder="Enter username">
+
+              </div>
+            <br>
+
+              <div class="form-group">
+                <input type="password" class="form-control" name="password" placeholder="Password">
+              </div>
+            <br>
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+    </div>
+
+
+
+{% endblock body %}

@@ -1,0 +1,51 @@
+{% extends 'new_base.html' %}
+{% load static %}
+
+{% block title %}
+
+{% endblock title %}
+
+
+
+
+{% block body %}
+    <h1> {{ user }} </h1>
+
+    <div class="row">
+    {% for item in data %}
+
+            {% if user == item.author %}
+
+                <div class="col-sm-3" >
+                        <div class="card p-3" style="width: 20rem;">
+                                 {% if item.main_photo.url %}
+                                     <img class="card-img-top" src="{{ item.main_photo.url }}" style="
+                                    height:300px;
+                                    width:300px;
+                                    object-fit: cover">
+                                 {% else %}
+                                     <img class="card-img-top" src="{% static 'shop_app/defult_photo/default-image-620x600.jpg' %}" style="
+                                    height:300px;
+                                    width:300px;
+                                    object-fit: cover">
+                                 {% endif %}
+
+                          <div class="card-body">
+                              <h5 class="card-title">{{ item.product_name | slice:":20" }}</h5>
+                              <p class="card-text">{{ item.product_description | slice:":50" }}</p>
+                              <hr class="my-4">
+                              <a>posted By {{ item.author.username }}</a><br>
+                              <a href="{% url 'edit_product_link' item.pk %}" class="btn btn-outline-dark btn-sm">Edit</a>
+                              <a href="{% url 'singe_product_view_link' item.pk %}" class="btn btn-outline-dark btn-sm">View</a>
+                              <a href="{% url 'delete_product_link' item.pk %}" class="btn btn-outline-dark btn-sm">Delete</a>
+
+                          </div>
+                        </div>
+                    </div>
+            {% endif %}
+        {% endfor %}
+
+    </div>
+
+
+{% endblock body %}

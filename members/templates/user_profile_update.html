@@ -1,0 +1,41 @@
+{% extends 'new_base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+
+{% block body %}
+    <div class="col-lg-5 border border-info rounded p-4 m-3 mx-auto">
+        <h1 class="alert alert-info p-4">Update User Profile</h1>
+
+            {{ us }}
+
+            <form method="POST" action="{% url 'update_profile_link' %}">
+                {% csrf_token %}
+
+
+                  {% if form.errors  %}
+                      <div class="alert alert-warning">
+                        {% for field in form %}
+                            {% if form.errors %}
+                                    {{ field.errors }}
+                            {% endif %}
+                        {% endfor %}
+                          <button class="close" data-bs-dismiss="alert">
+                              <small><sup>x</sup></small>
+                          </button>
+                      </div>
+                  {% endif %}
+
+
+
+                {{ form.as_p }}
+                <input type="submit" value="Update" class="btn btn-dark">
+            </form>
+    </div>
+
+
+
+
+{% endblock body %}

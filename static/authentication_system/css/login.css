@@ -1,0 +1,40 @@
+.item_road {
+    transition-duration:10s;
+}
+
+.test
+{
+    width: 300px;
+    height: 250px;
+    text-align: center;
+    background-color: rgb(141, 141, 226);
+    transition-duration: .50s;
+}
+
+.test:hover
+{
+   background-color: rgb(158, 218, 99);
+   width: 200px;
+   height: 100px;
+
+}
+
+
+.product_img
+
+{
+    width:60%;
+    height:80%;
+    transition-duration: .50s;
+}
+.product_img:hover
+{
+    width:90%;
+    height:100%;
+}
+
+.image_fit
+{
+    width:250px;
+    height:250px;
+}

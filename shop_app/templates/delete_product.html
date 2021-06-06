@@ -1,0 +1,18 @@
+{% extends 'shop_app_base.html' %}
+
+
+{% block title %}
+{% endblock title %}
+
+
+
+{% block body %}
+    <h1>are you sure you want to Delete {{ auctionitem.product_name }}</h1>
+
+    <form method="post" onsubmit="return confirm('Are you sure want to delete this item ?')">
+
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-dark">Delete</button>
+    </form>
+{% endblock body %}

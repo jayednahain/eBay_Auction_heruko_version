@@ -1,0 +1,20 @@
+{% extends 'new_base.html' %}
+{% load static %}
+
+{% block title %}
+{% endblock title %}
+
+
+
+{% block body %}
+    <div class="col-lg-7 border border-info rounded p-lg-5 mx-auto">
+        <h1 class="alert alert-info p-4">Edit Item</h1>
+
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-dark">Update</button>
+    </form>
+    </div>
+{% endblock body %}

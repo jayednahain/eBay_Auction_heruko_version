@@ -1,0 +1,203 @@
+{% extends 'new_base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+
+{% endblock title %}
+
+
+
+{% block body %}
+    <div>
+
+
+    </div>
+    <div class="jumbotron ">
+        <div class="row text-center">
+            <div class="col-sm-5 alert-success text-center">
+                <h1>Current Price</h1>
+                <h2>{{ auctionitem.product_main_price }}</h2>
+
+            </div>
+            <div class="col-sm-7 alert-danger">
+                <h1>Current Highest Bid Price</h1>
+                <h2 id="max_val"></h2>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-4">
+            <img src="{{ auctionitem.main_photo.url }}" width="100%" height="100%">
+        </div>
+        <div class="col-sm-5">
+
+            <table class="table">
+              <tbody>
+              <tr>
+                  <td>Product name</td>
+                  <td>{{ auctionitem.product_name}}</td>
+                </tr>
+                <tr>
+                  <td>Publish Date</td>
+                  <td>{{ auctionitem.item_post_date}}</td>
+
+                </tr>
+
+              <tr>
+                  <td>Current Price</td>
+                  <td>{{ auctionitem.product_main_price}}</td>
+                </tr>
+              <tr>
+                  <td>Product Catagory</td>
+                  <td>{{ auctionitem.category}}</td>
+              </tr>
+              <tr>
+                  <td>Bid start data</td>
+                  <td><a class="btn btn-danger">{{ auctionitem.auction_start_time}}</a></td>
+              </tr>
+              <tr>
+                  <td>Bid End data</td>
+                  <td><a class="btn btn-danger">{{ auctionitem.acution_end_time}}</a></td>
+              </tr>
+
+              </tbody>
+
+            </table>
+            <br>
+            <br>
+
+
+
+{#              {{ auctionitem.product_name}} <br>#}
+{#                {{ auctionitem.product_description}}<br>#}
+{#                {{ auctionitem.product_main_price}}<br>#}
+{#                {{ auctionitem.current_bid_price}}<br>#}
+{#                {{ auctionitem.item_post_date}}<br>#}
+{#                {{ auctionitem.category }}<br>#}
+
+
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="col-sm-3">
+           <img class="product_img" src="{{ auctionitem.photo1.url }}">
+        </div>
+        <div class="col-sm-3">
+           <img class="product_img" src="{{ auctionitem.photo2.url }}" width="100%" height="100%">
+        </div>
+        <div class="col-sm-3">
+           <img class="product_img" src="{{ auctionitem.photo3.url }}" width="100%" height="100%">
+        </div>
+        <div class="col-sm-3">
+           <img class="product_img" src="{{ auctionitem.photo4.url }}" width="100%" height="100%">
+        </div>
+
+    </div>
+    <br>
+
+
+
+    <div class="border border-secondary p-4 text-center">
+        <h1>Bidding Auction</h1>
+
+{#    <form>#}
+{#            <div class="row">#}
+{#                <div class="col-lg-3">#}
+{#                    <strong class="">Type Pirce for bidding</strong>#}
+{##}
+{#                </div>#}
+{#                <div class="col-lg-3">#}
+{#                    <input class="form-control" p>#}
+{##}
+{#                </div>#}
+{#                <div class="col-lg-3">#}
+{#                    <button class="btn btn-dark">Submit price</button>#}
+{##}
+{#                </div>#}
+{##}
+{#            </div>#}
+{#    </form>#}
+
+
+    <br>
+
+
+
+
+            {% if not auctionitem.biddings.all %}
+                <h1>No bid created for this product</h1>
+                <small>click <a href="#">here</a> for comment</small>
+
+            {% else %}
+
+
+                 <table class="table table-lg">
+                  <thead>
+                    <tr>
+                        <th scope="col">Author Name</th>
+    {#                    <th scope="col">Bidding Item</th>#}
+                        <th scope="col">Published Data</th>
+                        <th scope="col">Bidding Price</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  {% for bid in auctionitem.biddings.all %}
+                    <tr>
+                        <td>{{ bid.bdding_author_name }}</td>
+    {#                    <td>{{ data.bdding_item }}</td>#}
+                        <td>{{ bid.bidding_date }}</td>
+                        <td class="bidding_price">{{ bid.Biggin_Price }}</td>
+
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+
+            {% endif %}
+
+
+    </div>
+    <br>
+
+    <h2 class="text-center"><a  href="{% url 'post_bid_price_link' auctionitem.pk %}"> click here for bid</a></h2>
+
+
+    <script>
+
+        var prices = document.getElementsByClassName('bidding_price');
+        var biddingPrice = [];
+        for (let i =0; i < prices.length; i++){
+            {#biddingPrice.push = parseInt(prices[i].textContent);#}
+            biddingPrice.push(parseInt(prices[i].textContent))
+
+        }
+        console.log(biddingPrice[2])
+        let max = Math.max(...biddingPrice);
+        console.log(max);
+
+
+        if (max=="-Infinity"){
+            document.getElementById('max_val').innerHTML=`<a href="{% url 'post_bid_price_link' auctionitem.pk %}">Click here for Frist Bid</a>`;
+        }
+        else {
+            document.getElementById('max_val').innerText=max;
+        }
+
+
+
+
+
+    </script>
+
+
+
+
+
+{% endblock body %}

@@ -1,0 +1,1 @@
+web: gunicorn ebay_Acution.wsgi --log-file

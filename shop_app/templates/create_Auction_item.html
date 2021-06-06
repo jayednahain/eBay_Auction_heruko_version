@@ -1,0 +1,27 @@
+{% extends 'new_base.html' %}
+{% load static %}
+
+
+{% block title %}
+{% endblock title %}
+
+
+
+{% block body %}
+    <div class="col-lg-7 border border-info rounded p-4 m-3 mx-auto">
+        <h1 class="alert alert-info p-4">Create Auction Item</h1>
+
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.media }}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-dark">Submit</button>
+    </form>
+    </div>
+
+
+     <script>
+         var name = "{{ user.id }}"
+         document.getElementById("id_author").value=name;
+     </script>
+{% endblock body %}

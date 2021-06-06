@@ -1,0 +1,39 @@
+{% extends 'new_base.html' %}
+{% load static %}
+
+
+
+{% block title %}
+
+{% endblock title %}
+
+
+
+{% block body %}
+
+    <div class="row">
+        <div class="col-lg-5">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-dark">submit</button>
+            </form>
+
+        </div>
+
+    </div>
+
+
+
+
+     <script>
+         var name = "{{ user }}"
+         document.getElementById("id_bdding_author_name").value=name;
+     </script>
+
+
+
+
+
+
+{% endblock body %}
